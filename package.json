@@ -1,0 +1,59 @@
+{
+  "name": "local-meeting-copilot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Bounded local-first meeting copilot MVP",
+  "main": "dist/main/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "npm run build && electron .",
+    "package:win": "npm run build && electron-builder --win nsis portable --publish never",
+    "dist": "npm run package:win"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.7.2"
+  },
+  "build": {
+    "appId": "com.cluely.localmeetingcopilot",
+    "productName": "Local Meeting Copilot",
+    "asar": true,
+    "files": [
+      "dist/**/*",
+      "package.json",
+      "!**/.env",
+      "!**/.env.*",
+      "!**/*.env",
+      "!**/node_modules/.cache/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "publish": [],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
