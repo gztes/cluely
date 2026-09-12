@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Meeting Copilot</title>
+    <style>
+      :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #15171b; color: #f4f5f7; }
+      body { margin: 0; padding: 22px; } main { max-width: 620px; margin: auto; }
+      h1 { font-size: 1.35rem; margin: 0 0 5px; } h2 { font-size: 1rem; margin: 22px 0 8px; }
+      p { color: #abb1bd; font-size: .9rem; } button { border: 0; border-radius: 6px; padding: 9px 13px; cursor: pointer; background: #526dff; color: white; font-weight: 600; }
+      button:disabled { opacity: .4; cursor: default; } button.secondary { background: #333944; } .buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+      textarea { box-sizing: border-box; width: 100%; min-height: 75px; resize: vertical; background: #20232a; color: inherit; border: 1px solid #3b414d; border-radius: 6px; padding: 9px; }
+      pre { white-space: pre-wrap; background: #20232a; border-radius: 6px; padding: 12px; min-height: 80px; color: #dce0e8; }
+      #provider { border-left: 3px solid #5fce8a; padding-left: 9px; } article { display: flex; justify-content: space-between; border-bottom: 1px solid #2f333c; padding: 9px 0; font-size: .85rem; } article span { color: #abb1bd; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Local meeting copilot</h1>
+      <p id="provider">Checking provider...</p>
+      <p id="status">Ready. Nothing is recording.</p>
+      <div class="buttons"><button id="start">Start session</button><button id="stop" disabled>Stop session</button><button id="clear" class="secondary">Clear local history</button></div>
+      <h2>Active session / latest transcript</h2>
+      <pre id="active">No active session.</pre>
+      <label for="transcript">Completed local Whisper transcript</label>
+      <textarea id="transcript" placeholder="Paste a completed Whisper segment here..." aria-label="Completed local Whisper transcript"></textarea>
+      <div class="buttons"><button id="append" disabled>Append transcript</button></div>
+      <h2>Recent local sessions</h2>
+      <div id="history"></div>
+    </main>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
